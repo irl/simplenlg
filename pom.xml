@@ -96,6 +96,11 @@
       <systemPath>${basedir}/lib/lvg2011api.jar</systemPath>
     </dependency>
     <dependency>
+      <groupId>com.googlecode.jaxb-namespaceprefixmapper-interfaces</groupId>
+      <artifactId>JAXBNamespacePrefixMapper</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.4</version>
