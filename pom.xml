@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>uk.ac.abdn.csd.simplenlg</groupId>
-  <artifactId>simplenlg</artifactId>
-  <version>4.4-dev</version>
+  <groupId>com.github.com.irl.simplenlg</groupId>
+  <artifactId>simplenlg-maven</artifactId>
+  <version>4.4</version>
   <packaging>jar</packaging>
 
   <name>simplenlg</name>
