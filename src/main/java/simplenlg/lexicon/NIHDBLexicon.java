@@ -27,6 +27,12 @@ import gov.nih.nlm.nls.lexCheck.Lib.LexRecord;
 import gov.nih.nlm.nls.lexCheck.Lib.NounEntry;
 import gov.nih.nlm.nls.lexCheck.Lib.VerbEntry;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -77,6 +83,41 @@ public class NIHDBLexicon extends Lexicon {
 	 */
 	public NIHDBLexicon(String filename) {
 		super();
+
+		performDatabaseSetup(filename);
+	}
+
+	public NIHDBLexicon(URI uri) {
+		super();
+
+		File f;
+
+		try {
+
+			f = File.createTempFile("simplenlg-", "");
+			URL url = uri.toURL();
+			InputStream is = url.openStream();
+			FileOutputStream os = new FileOutputStream(f);
+			for ( ;; ) {
+				int c = is.read();
+				if ( c == -1 ) {
+					break;
+				}
+				os.write(c);
+			}
+			is.close();
+			os.close();
+			performDatabaseSetup(f.getCanonicalPath());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+
+	}
+
+	private void performDatabaseSetup(String filename) {
 		// get rid of .data at end of filename if necessary
 		String dbfilename = filename;
 		if (dbfilename.endsWith(DB_HSQL_EXTENSION))
@@ -95,6 +136,7 @@ public class NIHDBLexicon extends Lexicon {
 			System.out.println("Cannot open lexical db: " + ex.toString());
 			// probably should thrown an exception
 		}
+		
 	}
 
 	/**

@@ -18,6 +18,7 @@
  */
 package simplenlg.test.lexicon;
 
+import java.net.URI;
 
 import junit.framework.Assert;
 
@@ -39,7 +40,7 @@ public class MultipleLexiconTest {
 
 	// NIH, XML lexicon location
 	static String DB_FILENAME = "E:\\NIHDB\\lexAccess2009";
-	static String XML_FILENAME = "E:\\NIHDB\\default-lexicon.xml";
+	static String XML_RES_FILENAME = "default-lexicon.xml";
 	
 	// multi lexicon
 	MultipleLexicon lexicon;
@@ -47,7 +48,7 @@ public class MultipleLexiconTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.lexicon = new MultipleLexicon(new XMLLexicon(XML_FILENAME), new NIHDBLexicon(DB_FILENAME));
+		this.lexicon = new MultipleLexicon(new XMLLexicon(MultipleLexiconTest.class.getResource("/" + XML_RES_FILENAME).toURI()), new NIHDBLexicon(DB_FILENAME));
 	}
 
 	@After

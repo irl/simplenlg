@@ -25,6 +25,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import simplenlg.lexicon.XMLLexicon;
+import simplenlg.util.ResourceFile;
 
 /**
  * @author D. Westwater, Data2Text Ltd
@@ -36,7 +37,7 @@ public class XMLLexiconTest extends TestCase {
 	XMLLexicon lexicon = null;
 
 	// lexicon location - omit, use default lexicon instead
-	//static String XML_FILENAME = "res/simple-lexicon.xml";
+	static String XML_FILENAME = ResourceFile.getResourceAsPath("default-lexicon.xml");
 
 	@Override
 	@Before
@@ -45,7 +46,7 @@ public class XMLLexiconTest extends TestCase {
 	 */
 	public void setUp() {
 		long startTime = System.currentTimeMillis();
-		//this.lexicon = new XMLLexicon(XML_FILENAME); // omit, use default
+		this.lexicon = new XMLLexicon(XML_FILENAME); // omit, use default
 														// lexicon instead
 		this.lexicon = new XMLLexicon();
 		long stopTime = System.currentTimeMillis();

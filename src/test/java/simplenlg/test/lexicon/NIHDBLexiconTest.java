@@ -19,6 +19,7 @@
 
 package simplenlg.test.lexicon;
 
+import java.net.URI;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -42,6 +43,7 @@ import simplenlg.framework.NLGElement;
 import simplenlg.framework.WordElement;
 import simplenlg.lexicon.NIHDBLexicon;
 import simplenlg.realiser.english.Realiser;
+import simplenlg.util.ResourceFile;
 
 /**
  * Tests for NIHDBLexicon
@@ -54,7 +56,7 @@ public class NIHDBLexiconTest extends TestCase {
 	NIHDBLexicon lexicon = null;
 
 	// DB location -- change this to point to the lex access data dir
-	static String DB_FILENAME = "A:\\corpora\\LEX\\lexAccess2011\\data\\HSqlDb\\lexAccess2011.data";
+	static String DB_RES_FILENAME = "lexAccess2011.data";
 
 	@Override
 	@Before
@@ -62,7 +64,11 @@ public class NIHDBLexiconTest extends TestCase {
 	 * * Sets up the accessor and runs it -- takes ca. 26 sec
 	 */
 	public void setUp() {
-		this.lexicon = new NIHDBLexicon(DB_FILENAME);
+		try {
+			this.lexicon = new NIHDBLexicon(NIHDBLexiconTest.class.getResource("/" + DB_RES_FILENAME).toURI());
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

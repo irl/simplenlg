@@ -106,7 +106,7 @@ public class XMLLexicon extends Lexicon {
 	public XMLLexicon() {
 		try {
 			createLexicon(getClass().getResource(
-					"/simplenlg/lexicon/default-lexicon.xml").toURI());
+					"/default-lexicon.xml").toURI());
 		} catch (URISyntaxException ex) {
 			System.out.println(ex.toString());
 		}
